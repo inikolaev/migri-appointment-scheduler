@@ -9,7 +9,9 @@ It's possible to configure some aspects of required appoinment directly in the s
 Create a new virtual environment
 
 ```bash
-python -m venv ~/.local/share/virtualenvs/migri-appoinment-scheduler 
+python -m venv ~/.local/share/virtualenvs/migri-appoinment-scheduler
+. ~/.local/share/virtualenvs/migri-appoinment-scheduler/bin/activate
+pip install -r requirements.txt
 ```
 
 Open crontab editor
@@ -18,7 +20,7 @@ Open crontab editor
 crontab -e
 ```
 
-and add the following rule there
+and add the following rule which checks the schedule every 10 minutes (or whatever you like)
 
 ```
 */10 * * * * ~/migri-appointment-scheduler/find-times.sh
