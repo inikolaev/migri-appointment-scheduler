@@ -14,16 +14,37 @@ python -m venv ~/.local/share/virtualenvs/migri-appoinment-scheduler
 pip install -r requirements.txt
 ```
 
-Open crontab editor
+# Usage
 
 ```bash
-crontab -e
+Usage: main.py [OPTIONS]
+
+Options:
+  --office TEXT                   Migri office  [required]
+  --reservation-type [permanent-residence-permit|family-first-and-extended-residence-permit]
+                                  Migri reservation type  [required]
+  --min-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
+                                  Earliest appoinment date  [required]
+  --max-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
+                                  Latest appoinment date  [required]
+  --install-completion [bash|zsh|fish|powershell|pwsh]
+                                  Install completion for the specified shell.
+  --show-completion [bash|zsh|fish|powershell|pwsh]
+                                  Show completion for the specified shell, to
+                                  copy it or customize the installation.
+
+  --help                          Show this message and exit.
 ```
 
-and add the following rule which checks the schedule every 10 minutes (or whatever you like)
+Example usage:
 
-```
-*/10 * * * * ~/migri-appointment-scheduler/find-times.sh
+```bash
+python main.py --office helsinki 
+               --reservation-type permanent-residence-permit 
+               --reservation-type permanent-residence-permit 
+               --reservation-type family-first-and-extended-residence-permit 
+               --min-date 2020-11-15 
+               --max-date 2021-03-29
 ```
 
-Make sure to update paths to the corresponding ones on your system in `find-times.sh` and in the command above.
+In the example above we specify a reservation type for each person.
